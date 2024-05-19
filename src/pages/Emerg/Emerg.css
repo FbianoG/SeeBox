@@ -1,0 +1,61 @@
+.emerg {
+    background: #f6f7fb;
+    min-height: 100vh;
+    padding: 0 0 150px;
+}
+
+.emerg .list {
+    padding: 30px 5%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 50px;
+    list-style: none;
+}
+
+.emerg .btn__include {
+    color: #7b57ff;
+    font-size: 50px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    border: none;
+    background: none;
+    transform: translateX(-50%);
+    transition: 300ms;
+
+    &:hover {
+        color: #9981f1;
+    }
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .altaList {
+        max-width: 100%;
+        border-top-right-radius: 10px;
+    }
+
+    .emerg .btn__include {
+        bottom: auto;
+        top: 20px;
+        right: 20px;
+        left: auto;
+        transform: none;
+    }
+
+    .emerg .list {
+        gap: 20px;
+    }
+}
+
+@media print {
+    @page {
+        size: auto;
+        margin: 0.5cm;
+    }
+
+
+}

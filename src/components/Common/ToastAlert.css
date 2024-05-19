@@ -1,0 +1,46 @@
+.toastAlert {
+    width: 350px;
+    background: #c53030;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+    border-radius: 10px;
+    animation: show 800ms ease both;
+    position: fixed;
+    z-index: 10;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toastAlert-data {
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.toastAlert-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 5px;
+    color: #fff;
+}
+
+.toastAlert-icon {
+    color: #fff;
+    font-size: 20px;
+}
+
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        bottom: 15px;
+    }
+}

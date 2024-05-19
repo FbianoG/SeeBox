@@ -1,0 +1,88 @@
+.altaList {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    background: #fff;
+    border-top-left-radius: 10px;
+    overflow: hidden;
+    box-shadow: -3px -3px 10px #0003;
+    text-transform: capitalize;
+}
+
+.altaList__head {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #0001;
+    background: #111827;
+}
+
+.altaList__head h3 {
+    font-weight: 500;
+    color: #fdfdfd;
+}
+
+.altaList__head i {
+    color: #7b57ff;
+    cursor: pointer;
+    font-size: 20px;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+.altaList__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    flex-wrap: nowrap;
+    padding: 0;
+    gap: 0;
+    overflow: auto;
+    height: 0px;
+    max-height: 400px;
+    transition: 300ms;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: mediumslateblue;
+        border-radius: 10px;
+
+    }
+}
+
+.altaList__item {
+    width: 100%;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    border-bottom: 1px solid #0001;
+}
+
+.altaList__item-name {
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 5px;
+}
+
+.altaList__item-alta {
+    font-size: 14px;
+    color: #7b57ff;
+    text-align: right;
+}
+
+.altaList__item-plan {
+    font-size: 14px;
+    color: #555;
+}
