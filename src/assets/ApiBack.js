@@ -6,6 +6,7 @@ const token = localStorage.getItem('Token')
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 async function login(data) {
+    data.username = data.username.toLowerCase()
     try {
         const response = await axios.post(`${UrlBack}/login`, { data })
         localStorage.setItem('Token', response.data.token)

@@ -31,9 +31,9 @@ export default function Home({ setUser }) {
                 <form onSubmit={handleSubmit(logar)}>
                     <h3>Login</h3>
                     <label htmlFor='username'>Usuário:</label>
-                    <input type='text' id="username" {...register('username')} />
+                    <input type='text' id="username" {...register('username')} required/>
                     <label htmlFor='password'>Senha:</label>
-                    <input type='password' id="password" {...register('password')} />
+                    <input type='password' id="password" {...register('password')} required/>
                     {logon && <button type="submit" disabled><span></span>Entrando</button>}
                     {!logon && <button type="submit">Entrar</button>}
                     <span className="login__form-alert">{alert}</span>
