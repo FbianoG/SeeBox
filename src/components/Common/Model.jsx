@@ -101,7 +101,7 @@ export default function Model({ func, edit, data }) {
                     <label htmlFor='7'>Observação</label>
                     <textarea id="7" spellCheck='false' defaultValue={data.data.obs} {...register('obs')}></textarea>
                     <button type='submit'>Atualizar Dados</button>
-                    <button type='button' onClick={() => func.setModel(false)}>Fechar</button>
+                    <button type='button' onClick={() => {func.setModel(false), func.setEdit(false)}}>Fechar</button>
                 </form>
 
             }
