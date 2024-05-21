@@ -41,6 +41,8 @@ export default function AltaList() {
                         <p className='altaList__item-name'>{element.name}</p>
                         <p className="altaList__item-alta">{element.alta}</p>
                         <p className="altaList__item-plan">{element.plan}</p>
+                        {element.timeArchive && <p className="altaList__item-time">{element.timeArchive.split('T')[1].slice(0, 5)}h</p>}
+
                     </li>
                 ))}
 

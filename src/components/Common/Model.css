@@ -96,6 +96,7 @@
     display: grid;
     grid-auto-columns: 1fr 1fr;
     margin: 0 0 20px;
+    text-transform: capitalize;
 }
 
 .model__content-data p {

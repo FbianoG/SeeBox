@@ -1,9 +1,12 @@
 import axios from "axios";
+import TimeDate from "./TimeDate.";
 
-// const UrlBack = 'http://localhost:0000'
-const UrlBack = 'https://teste-livid-tau.vercel.app'
+const UrlBack = 'http://localhost:1981'
+// const UrlBack = 'https://teste-livid-tau.vercel.app'
 const token = localStorage.getItem('Token')
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+
 
 async function login(data) {
     data.username = data.username.toLowerCase()
@@ -12,20 +15,21 @@ async function login(data) {
         localStorage.setItem('Token', response.data.token)
         return response.data
     } catch (error) {
-        if (error.response) throw new Error(error.response.data.message) // qualquer erro que volte com resposta do servidor
-        else if (error.request) throw new Error("Error de rede. Tente novamente.") // error de rede ou link inativo
-        else throw new Error(error.message) // erro que não bata uma condição ex: sem token
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
     }
 }
 
 async function createPatient(data) {
+    const timeCreate = TimeDate()
     try {
-        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name, age: data.age, plan: data.plan, box: data.box })
+        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name, age: data.age, plan: data.plan, box: data.box, timeCreate })
         return response.data
     } catch (error) {
-        if (error.response) throw new Error(error.response.data.message) // qualquer erro que volte com resposta do servidor
-        else if (error.request) throw new Error("Error de rede. Tente novamente.") // error de rede ou link inativo
-        else throw new Error(error.message) // erro que não bata uma condição ex: sem token
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
     }
 }
 
@@ -51,11 +55,22 @@ async function getPatientsAlta() {
     }
 }
 
-
-async function updatePatient(data, _id, active, alta) {
-    if (active == undefined) active = true
+async function updatePatient(data, _id,) {
     try {
-        const response = await axios.post(`${UrlBack}/uptadePatient`, { data, _id, active, alta })
+        const response = await axios.post(`${UrlBack}/uptadePatient`, { data, _id })
+        return response.data
+    } catch (error) {
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
+async function archivePatient(_id, alta) {
+    const timeArchive = TimeDate()
+    const active = false
+    try {
+        const response = await axios.post(`${UrlBack}/archivePatient`, { _id, active, alta, timeArchive })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -65,8 +80,12 @@ async function updatePatient(data, _id, active, alta) {
 }
 
 async function updateStatus(_id, stats) {
+    let timeInt
+    let timeAlta
+    if (stats === 'internado') timeInt = TimeDate()
+    if (stats === 'alta') timeAlta = TimeDate()
     try {
-        const response = await axios.post(`${UrlBack}/updateStatus`, { _id, stats })
+        const response = await axios.post(`${UrlBack}/updateStatus`, { _id, stats, timeInt, timeAlta })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -90,4 +109,4 @@ async function uptadeRoom(_id, room) {
 
 
 
-export { login, createPatient, getPatients, getPatientsAlta, updatePatient, updateStatus, uptadeRoom }
+export { login, createPatient, getPatients, getPatientsAlta, updatePatient, archivePatient, updateStatus, uptadeRoom }
