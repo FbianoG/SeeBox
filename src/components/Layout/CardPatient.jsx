@@ -1,5 +1,5 @@
 import './CardPatient.css'
-import { useRef, useState } from 'react';
+import {useState } from 'react';
 import { archivePatient } from '../../assets/ApiBack';
 
 
@@ -7,20 +7,22 @@ export default function CardPatient({ data, func }) {
 
     const [alta, setAlta] = useState(null)
     const [options, setOptions] = useState()
-    const timeoutId = useRef(null)
+    let timeoutId
 
     async function archive() {
         event.preventDefault()
-        if (timeoutId.current) clearTimeout(timeoutId.current)
+        clearTimeout(timeoutId)
+        func.setAlert(false)
         try {
             const response = await archivePatient(data._id, alta)
             func.getData()
             func.setAlert({ title: 'Sucesso!', type: 'success', text: response.message })
         } catch (error) {
             console.error(error)
+            func.setAlert({ title: 'Erro!', type: 'error', text: error.message })
         } finally {
             setAlta(null)
-            timeoutId.current = setTimeout(() => func.setAlert(false), 4000)
+            timeoutId = setTimeout(() => func.setAlert(false), 4000)
         }
     }
 

@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 
 export default function Model({ func, edit, data }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const timeoutId = useRef(null)
+    let timeoutId
 
     async function create(data) {
+        clearTimeout(timeoutId)
+        func.setAlert(false)
         try {
             if (!data.name || !data.age || !data.plan || !data.box) throw new Error('Preencha todos os campos.')
             const response = await createPatient(data)
@@ -18,12 +20,13 @@ export default function Model({ func, edit, data }) {
             console.log(error)
             func.setAlert({ type: 'error', title: 'Erro ao incluir', text: error.message })
         } finally {
-            setTimeout(() => func.setAlert(false), 5000)
+            timeoutId = setTimeout(() => func.setAlert(false), 4000)
         }
     }
 
     async function update(dataForm) {
-        if (timeoutId.current) clearTimeout(timeoutId.current)
+        clearTimeout(timeoutId)
+        func.setAlert(false)
         try {
             const response = await updatePatient(dataForm, data._id)
             func.getData()
@@ -32,8 +35,9 @@ export default function Model({ func, edit, data }) {
             func.setAlert({ title: 'Sucesso!', type: 'success', text: response.message })
         } catch (error) {
             console.error(error);
+            func.setAlert({ title: 'Erro!', type: 'error', text: error.message })
         } finally {
-            timeoutId.current = setTimeout(() => func.setAlert(false), 4000)
+            timeoutId = setTimeout(() => func.setAlert(false), 4000)
         }
     }
 
