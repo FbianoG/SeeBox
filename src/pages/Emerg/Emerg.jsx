@@ -29,18 +29,32 @@ export default function Emerg() {
         }
     }
 
+    // function testar() {
+    //     const timeC = patients.map(element => element.timeCreate.slice(11, 19)); // Extrai o formato HH:MM:SS
+    //     const totalMillis = timeC.reduce((total, time) => {
+    //         const [hours, minutes, seconds] = time.split(':').map(Number);
+    //         return total + (hours * 3600000 + minutes * 60000 + (seconds * 1000 || 0));
+    //     }, 0);
+    //     const mediaMillis = totalMillis / timeC.length; // Calcula a média em milissegundos
+    //     const mediaDate = new Date(mediaMillis);
+    //     const hours = String(Math.floor(mediaDate.getUTCHours())).padStart(2, '0');
+    //     const minutes = String(mediaDate.getUTCMinutes()).padStart(2, '0');
+    //     const seconds = String(mediaDate.getUTCSeconds()).padStart(2, '0');
+    // }
+
     return (
         <div className='emerg'>
+            <div className="header">
+            </div>
             <ul className='list'>
-                {!patients && <Loader />}
-                {patients && patients.length === 0 && <h3>Ainda não há pacientes cadastrados!</h3>}
                 {patients && patients.map(element => <CardPatient key={element._id} data={element} func={{ getData, setAlert, setEdit, setModel, setPatient }} />)}
             </ul>
-            <button className='btn__include' onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i></button>
+            {!patients && <Loader />}
+            {patients && patients.length === 0 && <h3>Ainda não há pacientes cadastrados!</h3>}
+            <button className='btn__include' title='Incluir Paciente' onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i></button>
             {model && <Model data={patient} edit={edit} func={{ getData, setAlert, setModel, setEdit }} />}
             {alert && <ToastAlert data={alert} />}
             <AltaList />
-
         </div>
     )
 }

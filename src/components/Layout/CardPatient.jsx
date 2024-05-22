@@ -39,18 +39,18 @@ export default function CardPatient({ data, func }) {
                 <span className="divider"></span>
                 <div className="content">
                     <div className="content__check">
-                        <input type="checkbox" id={data._id + '1'} checked={data.data.nota} />
-                        <label htmlFor={data._id + '1'}>Nota</label>
-                        <input type="checkbox" id={data._id + '2'} checked={data.data.conc} />
-                        <label htmlFor={data._id + '2'}>Conciliação</label>
-                        <input type="checkbox" id={data._id + '3'} checked={data.data.pres} />
-                        <label htmlFor={data._id + '3'}>Prescrição</label>
-                        <input type="checkbox" id={data._id + '4'} checked={data.data.exa} />
-                        <label htmlFor={data._id + '4'}>Exames</label>
-                        <input type="checkbox" id={data._id + '5'} checked={data.data.tev} />
-                        <label htmlFor={data._id + '5'}>TEV</label>
-                        <input type="checkbox" id={data._id + '6'} checked={data.data.int} />
-                        <label htmlFor={data._id + '6'}>Internação</label>
+                        <input type="checkbox" id={data._id + '1'} checked={data.data.nota} disabled />
+                        <label htmlFor={data._id + '1'} id={data.data.nota == false && 'notChecked'}>Nota</label>
+                        <input type="checkbox" id={data._id + '2'} checked={data.data.conc} disabled />
+                        <label htmlFor={data._id + '2'} id={data.data.conc == false && 'notChecked'}>Conciliação</label>
+                        <input type="checkbox" id={data._id + '3'} checked={data.data.pres} disabled />
+                        <label htmlFor={data._id + '3'} id={data.data.pres == false && 'notChecked'}>Prescrição</label>
+                        <input type="checkbox" id={data._id + '4'} checked={data.data.exa} disabled />
+                        <label htmlFor={data._id + '4'} id={data.data.exa == false && 'notChecked'}>Exames</label>
+                        <input type="checkbox" id={data._id + '5'} checked={data.data.tev} disabled />
+                        <label htmlFor={data._id + '5'} id={data.data.tev == false && 'notChecked'}>TEV</label>
+                        <input type="checkbox" id={data._id + '6'} checked={data.data.int} disabled />
+                        <label htmlFor={data._id + '6'} id={data.data.int == false && 'notChecked'}>Internação</label>
                     </div>
                     <textarea spellCheck="false" value={data.data.obs} disabled></textarea>
                 </div>

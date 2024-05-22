@@ -8,6 +8,7 @@
     overflow: hidden;
     box-shadow: -3px -3px 10px #0003;
     text-transform: capitalize;
+    z-index: 9;
 }
 
 .altaList__head {

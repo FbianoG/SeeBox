@@ -14,7 +14,7 @@
 }
 
 .emerg .btn__include {
-    color: #7b57ff;
+    color: mediumslateblue;
     font-size: 50px;
     cursor: pointer;
     position: fixed;
@@ -24,9 +24,44 @@
     background: none;
     transform: translateX(-50%);
     transition: 300ms;
+    background: #fff;
+    border-radius: 50%;
+    width: max-content;
+    height: 50px;
 
     &:hover {
         color: #9981f1;
+
+        &::after {
+            content: 'Incluir Paciente';
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -55px;
+            left: -80px;
+            width: 200px;
+            height: 50px;
+            font-size: 16px;
+            border-radius: 5px;
+            color: #fdfdfd;
+            background: #111827;
+            opacity: 0;
+            animation: showPop 500ms ease both 500ms;
+            transform: scale(0.5);
+            box-shadow: 3px 3px 5px #0003;
+        }
+
+
+    }
+}
+
+@keyframes showPop {
+    0% {}
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 

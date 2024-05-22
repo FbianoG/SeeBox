@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 11;
 }
 
 .model__content {
@@ -155,4 +155,17 @@
     height: 150px;
     outline: none;
     padding: 3px 5px;
+    color: #333;
+}
+
+
+.model__time {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 20px;
+
+    & b {
+        font-weight: 600;
+        color: mediumslateblue;
+    }
 }

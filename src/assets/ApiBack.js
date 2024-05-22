@@ -35,9 +35,12 @@ async function createPatient(data) {
 
 async function getPatients() {
     try {
-        const response = await axios.post(`${UrlBack}/getPatients`,)
+        const response = await axios.get(`${UrlBack}/getPatients`,)
         return response.data
     } catch (error) {
+        if (error.response) {
+            if (error.response.status === 401) setTimeout(() => { location.href = '/' }, 4000)
+        }
         if (error.response) throw new Error(error.response.data.message)
         else if (error.request) throw new Error("Error de rede. Tente novamente.")
         else throw new Error(error.message)
@@ -46,9 +49,10 @@ async function getPatients() {
 
 async function getPatientsAlta() {
     try {
-        const response = await axios.post(`${UrlBack}/getPatientsAlta`)
+        const response = await axios.get(`${UrlBack}/getPatientsAlta`)
         return response.data
     } catch (error) {
+        console.log(error)
         if (error.response) throw new Error(error.response.data.message)
         else if (error.request) throw new Error("Error de rede. Tente novamente.")
         else throw new Error(error.message)
@@ -57,7 +61,7 @@ async function getPatientsAlta() {
 
 async function updatePatient(data, _id,) {
     try {
-        const response = await axios.post(`${UrlBack}/uptadePatient`, { data, _id })
+        const response = await axios.put(`${UrlBack}/uptadePatient`, { data, _id })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -70,7 +74,7 @@ async function archivePatient(_id, alta) {
     const timeArchive = TimeDate()
     const active = false
     try {
-        const response = await axios.post(`${UrlBack}/archivePatient`, { _id, active, alta, timeArchive })
+        const response = await axios.put(`${UrlBack}/archivePatient`, { _id, active, alta, timeArchive })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -85,7 +89,7 @@ async function updateStatus(_id, stats) {
     if (stats === 'internado') timeInt = TimeDate()
     if (stats === 'alta') timeAlta = TimeDate()
     try {
-        const response = await axios.post(`${UrlBack}/updateStatus`, { _id, stats, timeInt, timeAlta })
+        const response = await axios.put(`${UrlBack}/updateStatus`, { _id, stats, timeInt, timeAlta })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -97,7 +101,7 @@ async function updateStatus(_id, stats) {
 async function uptadeRoom(_id, room) {
     try {
         if (!_id) throw new Error('Paciente não encontrado.')
-        const response = await axios.post(`${UrlBack}/updateRoom`, { _id, room })
+        const response = await axios.put(`${UrlBack}/updateRoom`, { _id, room })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
