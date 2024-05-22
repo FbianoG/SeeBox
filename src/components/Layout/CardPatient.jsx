@@ -39,23 +39,23 @@ export default function CardPatient({ data, func }) {
                 <span className="divider"></span>
                 <div className="content">
                     <div className="content__check">
-                        <input type="checkbox" id={data._id + '1'} checked={data.data.nota} disabled />
-                        <label htmlFor={data._id + '1'} id={data.data.nota == false && 'notChecked'}>Nota</label>
-                        <input type="checkbox" id={data._id + '2'} checked={data.data.conc} disabled />
-                        <label htmlFor={data._id + '2'} id={data.data.conc == false && 'notChecked'}>Conciliação</label>
-                        <input type="checkbox" id={data._id + '3'} checked={data.data.pres} disabled />
-                        <label htmlFor={data._id + '3'} id={data.data.pres == false && 'notChecked'}>Prescrição</label>
-                        <input type="checkbox" id={data._id + '4'} checked={data.data.exa} disabled />
-                        <label htmlFor={data._id + '4'} id={data.data.exa == false && 'notChecked'}>Exames</label>
-                        <input type="checkbox" id={data._id + '5'} checked={data.data.tev} disabled />
-                        <label htmlFor={data._id + '5'} id={data.data.tev == false && 'notChecked'}>TEV</label>
-                        <input type="checkbox" id={data._id + '6'} checked={data.data.int} disabled />
-                        <label htmlFor={data._id + '6'} id={data.data.int == false && 'notChecked'}>Internação</label>
+                        <input type="checkbox" checked={data.data.nota} disabled />
+                        <label id={data.data.nota == false && 'notChecked'}>Nota</label>
+                        <input type="checkbox" checked={data.data.conc} disabled />
+                        <label id={data.data.conc == false && 'notChecked'}>Conciliação</label>
+                        <input type="checkbox" checked={data.data.pres} disabled />
+                        <label id={data.data.pres == false && 'notChecked'}>Prescrição</label>
+                        <input type="checkbox" checked={data.data.exa} disabled />
+                        <label id={data.data.exa == false && 'notChecked'}>Exames</label>
+                        <input type="checkbox" checked={data.data.tev} disabled />
+                        <label id={data.data.tev == false && 'notChecked'}>TEV</label>
+                        <input type="checkbox" checked={data.data.int} disabled />
+                        <label id={data.data.int == false && 'notChecked'}>Internação</label>
                     </div>
                     <textarea spellCheck="false" value={data.data.obs} disabled></textarea>
                 </div>
                 <div className="footer">
-                    <button type='button' onClick={() => { func.setModel(true), func.setEdit(true), func.setPatient(data) }}><i className="fa-solid fa-user-pen"></i></button>
+                    <button type='button' title='Editar Paciente' onClick={() => { func.setModel(true), func.setEdit(true), func.setPatient(data) }}><i className="fa-solid fa-user-pen"></i></button>
                     <span className='footer__falseBtn' onClick={() => setOptions(true)} onMouseLeave={() => setOptions(false)} ><i className="fa-solid fa-cloud-arrow-up"></i>
                         {options && <div className="footer__options">
                             <button type='submit' onClick={() => setAlta('internado')}>Internado</button>
