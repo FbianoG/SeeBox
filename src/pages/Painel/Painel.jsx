@@ -8,6 +8,8 @@ export default function Painel() {
     return (
         <>
             <main>
+                <h2 className='painel__title'>SeeBox</h2>
+                <span className='painel__title-legend'>Painel Administrador</span>
                 <div className="painel">
                     <a href="/emerg">
                         <i className="fa-solid fa-user-doctor"></i>

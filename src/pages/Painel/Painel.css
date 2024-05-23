@@ -1,5 +1,5 @@
 .painel {
-    margin: 50px auto;
+    margin: 0 auto;
     width: 1000px;
     background: #fff;
     display: grid;
@@ -7,6 +7,22 @@
     border: 1px solid #0001;
     border-radius: 10px;
 
+}
+
+.painel__title {
+    width: max-content;
+    margin: 50px auto 0;
+    color: mediumslateblue;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.painel__title-legend {
+    margin: 0 auto 40px;
+    width: max-content;
+    display: block;
+    color: #999;
+    font-size: 16px;
 }
 
 .painel a {
