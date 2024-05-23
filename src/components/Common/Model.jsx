@@ -53,6 +53,15 @@ export default function Model({ func, edit, data }) {
                     <input type='number' id='2' {...register('age', { required: true })} required />
                     <label htmlFor='3' >Plano de Saúde</label>
                     <input type='text' id='3'  {...register('plan', { required: true })} required />
+                    <label htmlFor='5'>Especialidade</label>
+                    <select id="5" {...register('spec', { required: true })} required>
+                        <option value="" disabled selected></option>
+                        <option value="clinica">Clinica</option>
+                        <option value="cardiologia">Cardiologia</option>
+                        <option value="ortopedia">Ortopedia</option>
+                        <option value="cirgeral">Cirurgia Geral</option>
+                    </select>
+
                     <label htmlFor='4'>Box</label>
                     <select id="4" {...register('box', { required: true })} required>
                         <optgroup label='Box'>
@@ -74,20 +83,11 @@ export default function Model({ func, edit, data }) {
                             <option value="md55">Med 5</option>
                         </optgroup>
                     </select>
-                    <label htmlFor='5'>Especialidade</label>
-                    <select id="5" {...register('spec', { required: true })} required>
-                        <option value="" disabled selected></option>
-                        <option value="clinica">Clinica</option>
-                        <option value="cardiologia">Cardiologia</option>
-                        <option value="ortopedia">Ortopedia</option>
-                        <option value="cirgeral">Cirurgia Geral</option>
-                    </select>
                     <button type='submit'>Incluir</button>
                     <button type='button' onClick={() => func.setModel(false)}>Fechar</button>
                 </form>
             }
             {edit &&
-
                 <form className="model__content" onSubmit={handleSubmit(update)}>
                     <h3>Editar Paciente</h3>
                     <div className="model__content-data">
@@ -112,8 +112,6 @@ export default function Model({ func, edit, data }) {
                     </div>
                     <label htmlFor='7'>Observação</label>
                     <textarea id="7" spellCheck='false' defaultValue={data.data.obs} {...register('obs')}></textarea>
-
-
                     <label htmlFor='8'>Box</label>
                     <select id="8" defaultValue={data.box} {...register('box', { required: true })}>
                         <optgroup label='Box'>
@@ -135,14 +133,10 @@ export default function Model({ func, edit, data }) {
                             <option value="md55">Med 5</option>
                         </optgroup>
                     </select>
-
-
                     <button type='submit'>Atualizar Dados</button>
                     <button type='button' onClick={() => { func.setModel(false), func.setEdit(false) }}>Fechar</button>
                 </form>
-
             }
-
         </div>
     )
 }

@@ -8,30 +8,32 @@
 }
 
 .ticket {
+    width: 0;
+    height: 0;
     position: absolute;
-    width: 15px;
-    height: 15px;
-    /* border-radius: 50%; */
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 15px;
     top: 0px;
     left: 0px;
+    background: none;
+    border-top: 20px solid;
+    border-top-left-radius: 5px;
+    border-right: 20px solid transparent;
+
 }
 
 .ticket.cardiologia {
-    background: #e27070;
+    border-top-color: #e05454;
 }
 
 .ticket.clinica {
-    background: #7da9d6;
+    border-top-color: #7da9d6;
 }
 
 .ticket.ortopedia {
-    background: #69d67c;
+    border-top-color: #69d67c;
 }
 
 .ticket.cirgeral {
-    background: #d6c569;
+    border-top-color: #d6c569;
 }
 
 
@@ -46,7 +48,8 @@
 
 .card .head__data {
     display: grid;
-    grid-template-columns: 130px 1fr 60px;
+    grid-template-columns: 120px 1fr 60px;
+    gap: 0 5px;
 }
 
 .card .head__data-name {
@@ -68,11 +71,11 @@
     color: #777;
     text-transform: capitalize;
     white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
 
     &:nth-child(3) {
         color: mediumslateblue;
-        font-weight: 700;
         text-transform: uppercase;
     }
 
@@ -131,8 +134,6 @@
     top: 7px;
     position: relative;
 }
-
-
 
 .card .content__check input:checked {
     width: 13px;
