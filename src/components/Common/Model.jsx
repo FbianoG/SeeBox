@@ -28,7 +28,7 @@ export default function Model({ func, edit, data }) {
         clearTimeout(timeoutId)
         func.setAlert(false)
         try {
-            const response = await updatePatient(dataForm, data._id)
+            const response = await updatePatient(data._id, dataForm)
             func.getData()
             func.setModel(false)
             func.setEdit(false)
@@ -47,14 +47,14 @@ export default function Model({ func, edit, data }) {
             {!edit &&
                 <form className="model__content" onSubmit={handleSubmit(create)}>
                     <h3>Incluir Paciente</h3>
-                    <label htmlFor=''>Nome Completo</label>
-                    <input type='text' {...register('name', { required: true })} required />
-                    <label htmlFor=''>Idade</label>
-                    <input type='number' {...register('age', { required: true })} required />
-                    <label htmlFor='' >Plano de Saúde</label>
-                    <input type='text'  {...register('plan', { required: true })} required />
-                    <label htmlFor=''>Box</label>
-                    <select id="" {...register('box', { required: true })}>
+                    <label htmlFor='1'>Nome Completo</label>
+                    <input type='text' id='1' {...register('name', { required: true })} required />
+                    <label htmlFor='2'>Idade</label>
+                    <input type='number' id='2' {...register('age', { required: true })} required />
+                    <label htmlFor='3' >Plano de Saúde</label>
+                    <input type='text' id='3'  {...register('plan', { required: true })} required />
+                    <label htmlFor='4'>Box</label>
+                    <select id="4" {...register('box', { required: true })} required>
                         <optgroup label='Box'>
                             <option value="bx1">Box 1</option>
                             <option value="bx2">Box 2</option>
@@ -73,6 +73,14 @@ export default function Model({ func, edit, data }) {
                             <option value="md44">Med 4</option>
                             <option value="md55">Med 5</option>
                         </optgroup>
+                    </select>
+                    <label htmlFor='5'>Especialidade</label>
+                    <select id="5" {...register('spec', { required: true })} required>
+                        <option value="" disabled selected></option>
+                        <option value="clinica">Clinica</option>
+                        <option value="cardiologia">Cardiologia</option>
+                        <option value="ortopedia">Ortopedia</option>
+                        <option value="cirgeral">Cirurgia Geral</option>
                     </select>
                     <button type='submit'>Incluir</button>
                     <button type='button' onClick={() => func.setModel(false)}>Fechar</button>
@@ -104,6 +112,31 @@ export default function Model({ func, edit, data }) {
                     </div>
                     <label htmlFor='7'>Observação</label>
                     <textarea id="7" spellCheck='false' defaultValue={data.data.obs} {...register('obs')}></textarea>
+
+
+                    <label htmlFor='8'>Box</label>
+                    <select id="8" defaultValue={data.box} {...register('box', { required: true })}>
+                        <optgroup label='Box'>
+                            <option value="bx1">Box 1</option>
+                            <option value="bx2">Box 2</option>
+                            <option value="bx3">Box 3</option>
+                            <option value="bx4">Box 4</option>
+                            <option value="bx5">Box 5</option>
+                            <option value="bx6">Box 6</option>
+                            <option value="bx7">Box 7</option>
+                            <option value="bx8">Box 8</option>
+                            <option value="bx9">Box 9</option>
+                        </optgroup>
+                        <optgroup label='Medicação'>
+                            <option value="md11">Med 1</option>
+                            <option value="md22">Med 2</option>
+                            <option value="md33">Med 3</option>
+                            <option value="md44">Med 4</option>
+                            <option value="md55">Med 5</option>
+                        </optgroup>
+                    </select>
+
+
                     <button type='submit'>Atualizar Dados</button>
                     <button type='button' onClick={() => { func.setModel(false), func.setEdit(false) }}>Fechar</button>
                 </form>

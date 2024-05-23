@@ -11,7 +11,7 @@ export default function Recep() {
     const [alert, setAlert] = useState(false)
     const timeoutId = useRef(null)
 
-    useEffect(() => { getData() }, [])
+    useEffect(() => { getData(), setInterval(() => { getData() }, [60000]) }, [])
 
     async function getData() {
         try {
@@ -62,8 +62,7 @@ export default function Recep() {
                         </div>
                         <p className='item__plan'>{element.plan}</p>
                         <div className="item__status">
-                            <span className={element.stats}></span>
-                            <p>{element.stats}</p>
+                            <p className={element.stats}>{element.stats === 'alta' ? 'Aguard. Alta' : element.stats}</p>
                         </div>
                         <p className='item__room'>{element.room}</p>
                         <div className="item__config">

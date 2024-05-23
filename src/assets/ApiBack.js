@@ -24,7 +24,7 @@ async function login(data) {
 async function createPatient(data) {
     const timeCreate = TimeDate()
     try {
-        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name, age: data.age, plan: data.plan, box: data.box, timeCreate })
+        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name.toLowerCase(), age: data.age, plan: data.plan.toLowerCase(), box: data.box, spec: data.spec, timeCreate })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -59,9 +59,9 @@ async function getPatientsAlta() {
     }
 }
 
-async function updatePatient(data, _id,) {
+async function updatePatient(_id, data) {
     try {
-        const response = await axios.put(`${UrlBack}/uptadePatient`, { data, _id })
+        const response = await axios.put(`${UrlBack}/uptadePatient`, { _id, box: data.box, data, })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)

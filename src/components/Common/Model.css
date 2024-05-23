@@ -169,3 +169,26 @@
         color: mediumslateblue;
     }
 }
+
+
+.model__content-spec {
+    display: flex;
+    justify-content: center;
+}
+
+.model__content-spec label {
+    margin: 0 20px 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+        color: #7b57ff;
+    }
+}
+
+.model__content-spec input {
+
+    cursor: pointer;
+
+}

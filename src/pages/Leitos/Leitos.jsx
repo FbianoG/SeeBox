@@ -60,8 +60,7 @@ export default function Leitos() {
                         </div>
                         <p className='item__plan'>{element.plan}</p>
                         <div className="item__status">
-                            <span className={element.stats}></span>
-                            <p>{element.stats}</p>
+                            <p className={element.stats}>{element.stats === 'alta' ? 'Aguard. Alta' : element.stats}</p>
                         </div>
                         <input type='text' className='item__room input' defaultValue={element.room} onChange={(e) => setRoom(e.target.value)} />
                         <div className="item__config">

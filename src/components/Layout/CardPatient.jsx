@@ -1,5 +1,5 @@
 import './CardPatient.css'
-import {useState } from 'react';
+import { useState } from 'react';
 import { archivePatient } from '../../assets/ApiBack';
 
 
@@ -28,6 +28,7 @@ export default function CardPatient({ data, func }) {
 
     return (
         <li className='card' >
+            <div className={`ticket ${data.spec}`}></div>
             <form onSubmit={archive}>
                 <div className="head">
                     <div className="head__data">
@@ -55,6 +56,7 @@ export default function CardPatient({ data, func }) {
                         <label id={data.data.int == false && 'notChecked'}>Internação</label>
                     </div>
                     <textarea spellCheck="false" value={data.data.obs} disabled></textarea>
+
                 </div>
                 <div className="footer">
                     <button type='button' title='Editar Paciente' onClick={() => { func.setModel(true), func.setEdit(true), func.setPatient(data) }}><i className="fa-solid fa-user-pen"></i></button>
@@ -64,11 +66,11 @@ export default function CardPatient({ data, func }) {
                             <button type='submit' onClick={() => setAlta('melhorado')}>Melhorado</button>
                             <button type='submit' onClick={() => setAlta('à revelia')}>À Revelia</button>
                             <button type='submit' onClick={() => setAlta('transferência')}>Transferência</button>
+                            <button type='submit' onClick={() => setAlta('outros')}>Outros</button>
                         </div>}
                     </span>
                     <span className={`footer__status ${data.stats}`}>
-                        {data.stats === 'alta' && <p>Aguardando-</p>}
-                        {data.stats}
+                        {data.stats === 'alta' ? 'Aguard. Alta' : data.stats}
                     </span>
                 </div>
             </form>
