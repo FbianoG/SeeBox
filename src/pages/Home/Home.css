@@ -40,10 +40,16 @@
     width: 240px;
     border: none;
     background: #eee;
-    padding: 5px;
+    padding: 3px 5px;
     outline: none;
+    border: 1px solid transparent;
     border-radius: 5px;
     margin: 0 0 15px;
+    color: #333;
+
+    &:focus {
+        border-color: #9173ff5f;
+    }
 }
 
 .home form button {
