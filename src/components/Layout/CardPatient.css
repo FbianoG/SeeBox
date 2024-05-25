@@ -1,7 +1,7 @@
 .card {
     width: 380px;
     background: #fff;
-    box-shadow: 3px 3px 5px #0001;
+    box-shadow: 3px 3px 5px #eee;
     border-radius: 5px;
     /* overflow: hidden; */
     position: relative;
@@ -14,26 +14,26 @@
     top: 0px;
     left: 0px;
     background: none;
-    border-top: 15px solid;
+    border-top: 13px solid;
     border-top-left-radius: 5px;
-    border-right: 15px solid transparent;
+    border-right: 13px solid transparent;
 
 }
 
 .ticket.cardiologia {
-    border-top-color: #e05454;
+    border-top-color: #f33939;
 }
 
 .ticket.clinica {
-    border-top-color: #7da9d6;
+    border-top-color: #1b88ee;
 }
 
 .ticket.ortopedia {
-    border-top-color: #69d67c;
+    border-top-color: #4ecd63;
 }
 
 .ticket.cirgeral {
-    border-top-color: #d6c569;
+    border-top-color: #feaf2f;
 }
 
 

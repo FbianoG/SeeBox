@@ -100,12 +100,18 @@
 }
 
 .model__content-data p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+
     &:nth-child(1) {
         font-size: 18px;
         font-weight: 500;
         grid-column: span 2;
         margin: 0 0 5px;
         color: #333;
+
     }
 
     &:nth-child(2) {
@@ -191,4 +197,13 @@
 
     cursor: pointer;
 
+}
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+    .model__content {
+        max-height: 100vh;
+        padding: 10px 30px;
+    }
 }

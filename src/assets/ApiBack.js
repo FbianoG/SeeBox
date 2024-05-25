@@ -1,11 +1,9 @@
 import axios from "axios";
-import TimeDate from "./TimeDate.";
 
 // const UrlBack = 'http://localhost:1981'
 const UrlBack = 'https://teste-livid-tau.vercel.app'
 const token = localStorage.getItem('Token')
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
 
 
 async function login(data) {
@@ -108,8 +106,6 @@ async function uptadeRoom(_id, room) {
         else throw new Error(error.message)
     }
 }
-
-
 
 
 export { login, createPatient, getPatients, getPatientsAlta, updatePatient, archivePatient, updateStatus, uptadeRoom }
