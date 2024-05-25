@@ -95,7 +95,7 @@ export default function Model({ func, edit, data }) {
                         <p>{data.age} anos</p>
                         <p>{data.plan}</p>
                     </div>
-                    <p className='model__time'><b>Entrada:</b> {data.timeCreate.slice(11, 16)}h - {data.timeCreate.slice(5, 10).split('-').reverse().join('/')} </p>
+                    <p className='model__time'><b>Entrada:</b> {new Date(data.timeCreate).getHours().toString().padStart(2, '0') + ":" + new Date(data.timeCreate).getMinutes().toString().padStart(2, '0') + 'h'} </p>
                     <div className="model__content-checkbox">
                         <input type="checkbox" id="1" defaultChecked={data.data.nota} {...register('nota')} />
                         <label htmlFor='1'>Nota</label>

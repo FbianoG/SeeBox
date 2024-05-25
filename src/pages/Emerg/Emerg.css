@@ -4,8 +4,14 @@
     padding: 0 0 250px;
 }
 
+.emerg .emerg__notPatients {
+    width: max-content;
+    margin: 130px auto;
+    color: mediumslateblue;
+}
+
 .emerg .list {
-    padding: 30px 5%;
+    padding: 80px 5% 30px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -75,7 +81,7 @@
 
     .emerg .btn__include {
         bottom: auto;
-        top: 20px;
+        top: 45px;
         right: 20px;
         left: auto;
         transform: none;

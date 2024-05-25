@@ -22,9 +22,8 @@ async function login(data) {
 }
 
 async function createPatient(data) {
-    const timeCreate = TimeDate()
     try {
-        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name.toLowerCase(), age: data.age, plan: data.plan.toLowerCase(), box: data.box, spec: data.spec, timeCreate })
+        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name.toLowerCase(), age: data.age, plan: data.plan.toLowerCase(), box: data.box, spec: data.spec })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -71,10 +70,8 @@ async function updatePatient(_id, data) {
 }
 
 async function archivePatient(_id, alta) {
-    const timeArchive = TimeDate()
-    const active = false
     try {
-        const response = await axios.put(`${UrlBack}/archivePatient`, { _id, active, alta, timeArchive })
+        const response = await axios.put(`${UrlBack}/archivePatient`, { _id, alta, })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -86,10 +83,12 @@ async function archivePatient(_id, alta) {
 async function updateStatus(_id, stats) {
     let timeInt
     let timeAlta
-    if (stats === 'internado') timeInt = TimeDate()
-    if (stats === 'alta') timeAlta = TimeDate()
+    let timeAna
+    if (stats === 'internado') timeInt = true
+    if (stats === 'alta') timeAlta = true
+    if (stats === 'análise') timeAna = true
     try {
-        const response = await axios.put(`${UrlBack}/updateStatus`, { _id, stats, timeInt, timeAlta })
+        const response = await axios.put(`${UrlBack}/updateStatus`, { _id, stats, timeInt, timeAlta, timeAna })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
