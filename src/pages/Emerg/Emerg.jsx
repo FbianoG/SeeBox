@@ -36,12 +36,9 @@ export default function Emerg() {
             const response = await getPatientsAlta()
             const todayPatients = response.altaPatients.filter(element => new Date(element.timeCreate).getDate() === new Date().getDate())
             const altaPatients = response.altaPatients.filter(element => !element.active)
-            const altaPatientsOrdered = altaPatients.sort((a, b) => new Date(a.timeArchive) - new Date(b.timeArchive))
-            console.log(altaPatientsOrdered)
+            const altaPatientsOrdered = altaPatients.sort((a, b) => new Date(b.timeArchive) - new Date(a.timeArchive))
             setAltaPatients(altaPatientsOrdered)
             setTodayPatients(todayPatients)
-
-
         } catch (error) {
             console.error(error)
             setAlert({ type: 'error', title: 'Altas e Tempo Médio', text: error.message })
