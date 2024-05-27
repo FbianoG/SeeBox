@@ -7,8 +7,8 @@ export default function Dashboard({ data }) {
 
 
     function showDash() {
-        if (!dash) dashBoard.current.style.top = '0px', setDash(true)
-        else dashBoard.current.style.top = '', setDash(false)
+        if (!dash) dashBoard.current.style.top = '0px',  dashBoard.current.style.margin = '0 0 0px', setDash(true)
+        else dashBoard.current.style.top = '',dashBoard.current.style.margin = '', setDash(false)
     }
 
     function timeInt() {
@@ -34,7 +34,7 @@ export default function Dashboard({ data }) {
             const time = new Date(element.timeCreate)
             if (element.active) {
                 count += 1
-                allTime += ((date - time) / 1000 / 60)
+                allTime += ((date - time) / 1000 / 60  )
             }
             // if (!element.timeArchive) {
             //     count += 1

@@ -4,6 +4,75 @@
     padding: 0 0 250px;
 }
 
+.emerg__header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0 5%;
+    background: #111827;
+    position: relative;
+    z-index: 11;
+}
+
+.emerg__header a {
+    color: mediumslateblue;
+    font-size: 24px;
+    border-right: 1px solid #333;
+    padding: 5px 30px 5px 0;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+
+.emerg__header button {
+    background: none;
+    border: none;
+    color: #eee;
+    font-weight: ;
+    font-size: 14px;
+    transition: 300ms;
+    cursor: pointer;
+    height: 100%;
+    color: #888;
+
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    &:nth-last-child(1) {
+        background: #7b57ff;
+        color: #eee;
+        height: max-content;
+        align-items: center;
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+        border-radius: 5px;
+        margin: 0 0 0 auto;
+
+        &:hover {
+            transition: 500ms;
+            background: #fdfdfd;
+            color: #5e44f2;
+            opacity: 1;
+        }
+    }
+
+}
+
+.emerg__header #active {
+    color: #fdfdfd;
+    border-bottom: 3px solid #7a63ff;
+    transition: 0ms;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+
 .emerg .emerg__notPatients {
     width: max-content;
     margin: 130px auto;
@@ -11,7 +80,8 @@
 }
 
 .emerg .list {
-    padding: 80px 5% 30px;
+    position: relative;
+    padding: 50px 5% 30px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -19,48 +89,6 @@
     list-style: none;
 }
 
-.emerg .btn__include {
-    color: #5e44f2;
-    font-size: 50px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    border: none;
-    background: none;
-    transform: translateX(-50%);
-    transition: 300ms;
-    background: #fff;
-    border-radius: 50%;
-    width: max-content;
-    height: 50px;
-
-    &:hover {
-        color: #9981f1;
-
-        &::after {
-            content: 'Incluir Paciente';
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            top: -55px;
-            left: -80px;
-            width: 200px;
-            height: 50px;
-            font-size: 16px;
-            border-radius: 5px;
-            color: #fdfdfd;
-            background: #111827;
-            opacity: 0;
-            animation: showPop 500ms ease both 500ms;
-            transform: scale(0.5);
-            box-shadow: 3px 3px 5px #0003;
-        }
-
-
-    }
-}
 
 @keyframes showPop {
     0% {}
@@ -71,20 +99,46 @@
     }
 }
 
+.emerg .btn__include {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    color: #5e44f2;
+    background: #fff;
+    position: fixed;
+    right: 10px;
+    bottom: 85px;
+    font-size: 48px;
+    display: none;
+    z-index: 9;
+}
+
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
-    .altaList {
-        max-width: 100%;
-        border-top-right-radius: 10px;
+    .emerg__header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     .emerg .btn__include {
-        bottom: auto;
-        top: 45px;
-        right: 20px;
-        left: auto;
-        transform: none;
+        display: block;
+    }
+
+    .emerg__header a {
+        display: none;
+    }
+
+    .emerg__header button {
+        &:nth-last-child(1) {
+            display: none;
+        }
+    }
+
+    .altaList {
+        max-width: 100%;
+        border-top-right-radius: 10px;
     }
 
     .emerg .list {
