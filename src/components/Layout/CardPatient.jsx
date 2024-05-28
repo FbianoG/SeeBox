@@ -11,7 +11,7 @@ export default function CardPatient({ data, func }) {
 
     async function archive() {
         event.preventDefault()
-        window.confirm('Você realmente deseja arquivar o paciente ?')
+        window.confirm('Você realmente deseja arquivar este paciente ?')
         clearTimeout(timeoutId)
         func.setAlert(false)
         try {
