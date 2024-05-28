@@ -81,6 +81,8 @@ export default function Model({ func, edit, data }) {
                             <option value="md33">Med 3</option>
                             <option value="md44">Med 4</option>
                             <option value="md55">Med 5</option>
+                            <option value="md66">Med 6</option>
+                            <option value="md77">Med 7</option>
                         </optgroup>
                     </select>
                     <button type='submit'>Incluir</button>
@@ -131,6 +133,8 @@ export default function Model({ func, edit, data }) {
                             <option value="md33">Med 3</option>
                             <option value="md44">Med 4</option>
                             <option value="md55">Med 5</option>
+                            <option value="md66">Med 6</option>
+                            <option value="md77">Med 7</option>
                         </optgroup>
                     </select>
                     <button type='submit'>Atualizar Dados</button>
