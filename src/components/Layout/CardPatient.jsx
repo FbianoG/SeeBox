@@ -58,7 +58,6 @@ export default function CardPatient({ data, func }) {
                         <label id={data.data.int == false && 'notChecked'}>Internação</label>
                     </div>
                     <textarea spellCheck="false" value={data.data.obs} disabled></textarea>
-
                 </div>
                 <div className="footer">
                     <button type='button' title='Editar Paciente' onClick={() => { func.setModel(true), func.setEdit(true), func.setPatient(data) }}><i className="fa-solid fa-user-pen"></i></button>

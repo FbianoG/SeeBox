@@ -4,12 +4,14 @@ import { getPatients, updateStatus } from '../../assets/ApiBack'
 import ToastAlert from '../../components/Common/ToastAlert'
 import AltaList from '../../components/Layout/AltaList'
 import Loader from '../../components/Common/Loader'
+import ItenPatient from '../../components/Layout/ItenPatient'
 
 export default function Recep() {
 
     const [patients, setPatients] = useState(null)
     const [alert, setAlert] = useState(false)
     const timeoutId = useRef(null)
+
 
     useEffect(() => { getData(), setInterval(() => { getData() }, [60000]) }, [])
 
@@ -29,6 +31,8 @@ export default function Recep() {
     async function changeStatus(_id, stats) {
         if (timeoutId.current) clearTimeout(timeoutId.current)
         setAlert(null)
+        if (window.confirm('Você realmente alterar o status do paciente ?')) { }
+        else return
         try {
             const response = await updateStatus(_id, stats)
             getData()
@@ -53,32 +57,7 @@ export default function Recep() {
             <ul className='list'>
                 {!patients && <Loader />}
                 {patients && patients.length === 0 && <h3>Ainda não há pacientes cadastrados!</h3>}
-                {patients && patients.map(element => (
-                    <li key={element._id} className='item'>
-                        <span className='item__box'>{element.box.slice(0, 1) == 'm' ? 'md' : element.box.slice(2)}</span>
-                        <div className="item__data">
-                            <p className='item__data-name'>{element.name}</p>
-                            <p className='item__data-age'>{element.age} Anos</p>
-                        </div>
-                        <p className='item__plan'>{element.plan}</p>
-                        <div className="item__status">
-                            <p className={element.stats}>{element.stats === 'alta' ? 'Aguard. Alta' : element.stats}</p>
-                        </div>
-                        <p className='item__room'>{element.room}</p>
-                        <div className="item__config">
-                            <i className="fa-solid fa-sliders"></i>
-                            <div className="item__config-options">
-                                <span onClick={() => changeStatus(element._id, 'indefinido')}>Indefinido</span>
-                                <span onClick={() => changeStatus(element._id, 'análise')}>Análise</span>
-                                <span onClick={() => changeStatus(element._id, 'alta')}>Sol. Alta</span>
-                                <span onClick={() => changeStatus(element._id, 'internado')}>Internado</span>
-                                <span onClick={() => changeStatus(element._id, 'relatório')}>Relatório</span>
-                                <span onClick={() => changeStatus(element._id, 'carência')}>Carência</span>
-                                <span onClick={() => changeStatus(element._id, 'transferência')}>Transferência</span>
-                            </div>
-                        </div>
-                    </li>
-                ))}
+                {patients && patients.map(element => <ItenPatient key={element._id} data={element} func={{ changeStatus }} />)}
             </ul>
             {alert && <ToastAlert data={alert} />}
             <AltaList />
