@@ -10,19 +10,23 @@
 
 .recep .legends {
     padding: 20px 15px;
+    margin: 0 0 10px 0;
     display: grid;
     gap: 20px;
     grid-template-columns: 40px 300px 120px 120px 100px 50px;
     background: #53526a;
+    background: #111827f3;
     color: #fdfdfd;
     font-weight: 500;
     width: max-content;
+    border-radius: 10px;
 }
 
-.recep .list {}
-
-
-
+.recep .list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px #0002;
+}
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
@@ -33,8 +37,9 @@
     }
 
     .recep .list {
-        width: 100%;
-        padding: 0 0 300px;
+        width: 95%;
+        /* padding: 0 0 300px; */
+        margin: 0 0 350px;
     }
 
     .altaList {

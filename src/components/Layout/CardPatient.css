@@ -287,9 +287,9 @@
 }
 
 .transferência {
-    background: #ec5c5c2e;
-    color: #e64d4d;
-    border: 1px solid #ce4a4a1d;
+    background: rgba(124, 104, 238, 0.199);
+    color: mediumslateblue;
+    border: 1px solid rgba(124, 104, 238, 0.203);
     /* border: 3px solid #ef5e5e; */
 }
 
@@ -301,20 +301,22 @@
 }
 
 .alta {
-    background: rgba(124, 104, 238, 0.199);
-    color: mediumslateblue;
-    border: 1px solid rgba(124, 104, 238, 0.203);
+
+    background: #ec5c5c2e;
+    color: #e64d4d;
+    border: 1px solid #ce4a4a1d;
     /* border: 3px solid #9173ff; */
     animation: pulseAlta 1s ease infinite alternate;
 }
 
 @keyframes pulseAlta {
     0% {
-        opacity: 0.7;
+        opacity: 1;
     }
 
     100% {
-        box-shadow: 0px 0px 7px #7b57ff90;
+
+        box-shadow: 0px 0px 2px 1px #ff575790;
     }
 }
 

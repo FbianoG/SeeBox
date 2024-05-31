@@ -1,6 +1,5 @@
 .recep .item {
     width: max-content;
-    background: #fff;
     padding: 15px;
     display: grid;
     grid-template-columns: 40px 300px 120px 120px 100px 50px;
@@ -10,6 +9,10 @@
     font-size: 15px;
     border-bottom: 1px solid #0001;
     transition: 300ms;
+
+    &:nth-last-child(1) {
+        border-bottom: none;
+    }
 
     &:hover {
         background: #f5f5f5;
