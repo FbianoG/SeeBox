@@ -3,7 +3,8 @@
     height: 100px;
     margin: 50px auto;
     border: 3px solid transparent;
-    border-bottom: 3px solid mediumslateblue;
+    border-bottom-color: mediumslateblue;
+    border-top-color: mediumslateblue;
     border-radius: 50%;
     animation: rotateLoader 1s linear infinite;
 }

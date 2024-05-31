@@ -6,6 +6,18 @@ const token = localStorage.getItem('Token')
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 
+async function createUser(data) {
+    data.username = data.username.toLowerCase()
+    try {
+        const response = await axios.post(`${UrlBack}/createUser`, data)
+        return response.data
+    } catch (error) {
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
 async function login(data) {
     data.username = data.username.toLowerCase()
     try {
@@ -108,4 +120,4 @@ async function uptadeRoom(_id, room) {
 }
 
 
-export { login, createPatient, getPatients, getPatientsAlta, updatePatient, archivePatient, updateStatus, uptadeRoom }
+export { createUser, login, createPatient, getPatients, getPatientsAlta, updatePatient, archivePatient, updateStatus, uptadeRoom }

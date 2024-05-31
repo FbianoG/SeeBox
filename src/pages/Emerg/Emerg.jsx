@@ -49,12 +49,13 @@ export default function Emerg() {
     return (
         <div className='emerg'>
             <header className='emerg__header'>
-                <a href='/painel'>SeeBox</a>
+                {JSON.parse(localStorage.getItem('User')).roles === 'adm' ? <a href='/painel'>SeeBox</a> : <a>SeeBox</a>}
+
                 <button id={active === 'todos' && 'active'} onClick={() => setActive('todos')}>Todos</button>
                 <button id={active === 'análise' && 'active'} onClick={() => setActive('análise')}>Análise</button>
                 <button id={active === 'alta' && 'active'} onClick={() => setActive('alta')}>Aguard. Alta</button>
                 <button id={active === 'internado' && 'active'} onClick={() => setActive('internado')}>Internados</button>
-                <button  onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i> Incluir Paciente</button>
+                <button onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i> Incluir Paciente</button>
             </header>
             {todayPatients && <Dashboard data={todayPatients} />}
             <ul className='list'>

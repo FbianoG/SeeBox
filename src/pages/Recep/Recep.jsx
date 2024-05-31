@@ -7,11 +7,10 @@ import Loader from '../../components/Common/Loader'
 import ItenPatient from '../../components/Layout/ItenPatient'
 
 export default function Recep() {
-
+    console.log(JSON.parse(localStorage.getItem('User')))
     const [patients, setPatients] = useState(null)
     const [alert, setAlert] = useState(false)
     const timeoutId = useRef(null)
-
 
     useEffect(() => { getData(), setInterval(() => { getData() }, [60000]) }, [])
 
@@ -55,10 +54,10 @@ export default function Recep() {
                 <span>Quarto</span>
             </div>
             <ul className='list'>
-                {!patients && <Loader />}
                 {patients && patients.length === 0 && <h3>Ainda não há pacientes cadastrados!</h3>}
                 {patients && patients.map(element => <ItenPatient key={element._id} data={element} func={{ changeStatus }} />)}
             </ul>
+            {!patients && <Loader />}
             {alert && <ToastAlert data={alert} />}
             <AltaList />
 

@@ -64,7 +64,7 @@ export default function Leitos() {
                         </div>
                         <input type='text' className='item__room input' defaultValue={element.room} onChange={(e) => setRoom(e.target.value)} />
                         <div className="item__config">
-                            <button onClick={() => changeRoom(element._id, room)}><i className="fa-solid fa-angles-right"></i></button>
+                            <button onClick={() => changeRoom(element._id, room)} title='Enviar Leito'><i className="fa-solid fa-angles-right"></i></button>
                         </div>
                     </li>
                 ))}

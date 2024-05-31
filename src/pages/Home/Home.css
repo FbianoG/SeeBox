@@ -65,6 +65,7 @@
     border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
+    position: relative;
 
     &:hover {
         filter: brightness(1.1);
@@ -82,8 +83,27 @@
     height: 20px;
     border: 2px solid transparent;
     border-bottom-color: #fff;
+    border-top-color: #fff;
     border-radius: 50%;
     animation: rotateLoading 500ms linear infinite;
+    position: absolute;
+    left: 65px;
+}
+
+.home form .btn__createNewUser {
+    background: none;
+    color: #666;
+    margin: 10px 0 0;
+    text-align: right;
+    padding: 0;
+
+    &:hover {
+        color: #7b57ff;
+    }
+}
+
+.home form .btn__createNewUser.cancel {
+    margin: 10px 0 0;
 }
 
 @keyframes rotateLoading {
@@ -93,7 +113,9 @@
 }
 
 .login__form-alert {
-    height: 20px;
-    margin: 15px 0 0 0;
+    text-align: center;
+    max-width: 240px;
+    min-height: 20px;
+    margin: 0 0 10px 0;
     color: crimson;
 }
