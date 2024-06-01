@@ -33,7 +33,7 @@ export default function Emerg() {
         try {
             const [activePatients, resAltaPatients] = await Promise.all([getPatients(), getPatientsAlta()])
             const ordered = activePatients.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
-            const todayPatients = resAltaPatients.altaPatients.filter(element => new Date(element.timeCreate).getDate() === new Date().getDate())
+            const todayPatients = resAltaPatients.altaPatients.filter(element => new Date(element.dataTime.timeCreate).getDate() === new Date().getDate())
             const altaPatients = resAltaPatients.altaPatients.filter(element => !element.active)
             const altaPatientsOrdered = altaPatients.sort((a, b) => new Date(b.timeArchive) - new Date(a.timeArchive))
             setAltaPatients(altaPatientsOrdered)
@@ -58,11 +58,12 @@ export default function Emerg() {
                 <button onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i> Incluir Paciente</button>
             </header>
             {todayPatients && <Dashboard data={todayPatients} />}
+            {!patients && <Loader />}
+            {patients && patients.length === 0 && <h3 className='avisoTitle'>Ainda não há pacientes cadastrados!</h3>}
             <ul className='list'>
                 {patients && patients.map(element => <CardPatient key={element._id} data={element} func={{ getData, setAlert, setEdit, setModel, setPatient }} />)}
             </ul>
-            {!patients && <Loader />}
-            {patients && patients.length === 0 && <h3 className='emerg__notPatients'>Ainda não há pacientes cadastrados!</h3>}
+
 
             {model && <Model data={patient} edit={edit} func={{ getData, setAlert, setModel, setEdit }} />}
             {alert && <ToastAlert data={alert} />}

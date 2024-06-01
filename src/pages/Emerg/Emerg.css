@@ -73,12 +73,6 @@
 }
 
 
-.emerg .emerg__notPatients {
-    width: max-content;
-    margin: 130px auto;
-    color: mediumslateblue;
-}
-
 .emerg .list {
     position: relative;
     padding: 50px 5% 30px;

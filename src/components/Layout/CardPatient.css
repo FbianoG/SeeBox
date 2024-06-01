@@ -125,6 +125,10 @@
     color: rgb(113, 100, 186);
 }
 
+#notChecked {
+    color: #bbb;
+}
+
 .card .content__check input {
     /* pointer-events: none; */
     -webkit-appearance: none;
@@ -227,7 +231,8 @@
     z-index: 9;
     opacity: 0;
     transform: scale(0.5);
-    animation: showOptions 300ms ease both;  /* animation está no ItenPatient.css */
+    animation: showOptions 300ms ease both;
+    /* animation está no ItenPatient.css */
 }
 
 .card .footer__options button {
@@ -323,11 +328,7 @@
     /* border: 3px solid #f3a9e9; */
 }
 
-#notChecked {
-    opacity: 0.4;
-    color: #555;
 
-}
 
 @media print {
 

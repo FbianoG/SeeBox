@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { createPatient, updatePatient } from '../../assets/ApiBack';
+import { createPatient, uptadeDataMed } from '../../assets/ApiBack';
 import './Model.css'
 import { useForm } from "react-hook-form";
 
@@ -28,7 +28,7 @@ export default function Model({ func, edit, data }) {
         clearTimeout(timeoutId)
         func.setAlert(false)
         try {
-            const response = await updatePatient(data._id, dataForm)
+            const response = await uptadeDataMed(data._id, dataForm)
             func.getData()
             func.setModel(false)
             func.setEdit(false)
@@ -97,25 +97,33 @@ export default function Model({ func, edit, data }) {
                         <p>{data.age} anos</p>
                         <p>{data.plan}</p>
                     </div>
-                    <p className='model__time'><b>Entrada:</b> {new Date(data.timeCreate).getHours().toString().padStart(2, '0') + ":" + new Date(data.timeCreate).getMinutes().toString().padStart(2, '0') + 'h'} </p>
+                    <p className='model__time'><b>Entrada:</b> {new Date(data.dataTime.timeCreate).getHours().toString().padStart(2, '0') + ":" + new Date(data.dataTime.timeCreate).getMinutes().toString().padStart(2, '0') + 'h'} </p>
                     <div className="model__content-checkbox">
-                        <input type="checkbox" id="1" defaultChecked={data.data.nota} {...register('nota')} />
+                        <input type="checkbox" id="1" defaultChecked={data.dataMed.nota} {...register('nota')} />
                         <label htmlFor='1'>Nota</label>
-                        <input type="checkbox" id="2" defaultChecked={data.data.conc} {...register('conc')} />
+                        <input type="checkbox" id="2" defaultChecked={data.dataMed.conc} {...register('conc')} />
                         <label htmlFor='2'>Conciliação</label>
-                        <input type="checkbox" id="3" defaultChecked={data.data.pres} {...register('pres')} />
+                        <input type="checkbox" id="3" defaultChecked={data.dataMed.pres} {...register('pres')} />
                         <label htmlFor='3'>Prescrição</label>
-                        <input type="checkbox" id="4" defaultChecked={data.data.exa} {...register('exa')} />
+                        <input type="checkbox" id="4" defaultChecked={data.dataMed.exa} {...register('exa')} />
                         <label htmlFor='4'>Exames</label>
-                        <input type="checkbox" id="5" defaultChecked={data.data.tev} {...register('tev')} />
+                        <input type="checkbox" id="5" defaultChecked={data.dataMed.tev} {...register('tev')} />
                         <label htmlFor='5'>Tev</label>
-                        <input type="checkbox" id="6" defaultChecked={data.data.int} {...register('int')} />
+                        <input type="checkbox" id="6" defaultChecked={data.dataMed.int} {...register('int')} />
                         <label htmlFor='6'>Internação</label>
                     </div>
                     <label htmlFor='7'>Observação</label>
-                    <textarea id="7" spellCheck='false' defaultValue={data.data.obs} {...register('obs')}></textarea>
-                    <label htmlFor='8'>Box</label>
-                    <select id="8" defaultValue={data.box} {...register('box', { required: true })}>
+                    <textarea id="7" spellCheck='false' defaultValue={data.dataMed.obs} {...register('obs')}></textarea>
+                    <label htmlFor='8'>Especialidade</label>
+                    <select id="8" defaultValue={data.dataMed.spec} {...register('spec', { required: true })} required>
+                        <option value="" disabled selected></option>
+                        <option value="clinica">Clinica</option>
+                        <option value="cardiologia">Cardiologia</option>
+                        <option value="ortopedia">Ortopedia</option>
+                        <option value="cirgeral">Cirurgia Geral</option>
+                    </select>
+                    <label htmlFor='9'>Box</label>
+                    <select id="9" defaultValue={data.box} {...register('box', { required: true })}>
                         <optgroup label='Box'>
                             <option value="bx1">Box 1</option>
                             <option value="bx2">Box 2</option>

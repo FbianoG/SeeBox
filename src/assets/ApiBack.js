@@ -68,9 +68,9 @@ async function getPatientsAlta() {
     }
 }
 
-async function updatePatient(_id, data) {
+async function uptadeDataMed(_id, data) {
     try {
-        const response = await axios.put(`${UrlBack}/uptadePatient`, { _id, box: data.box, data, })
+        const response = await axios.put(`${UrlBack}/uptadeDataMed`, { _id, box: data.box, dataMed: data, })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
@@ -120,4 +120,4 @@ async function uptadeRoom(_id, room) {
 }
 
 
-export { createUser, login, createPatient, getPatients, getPatientsAlta, updatePatient, archivePatient, updateStatus, uptadeRoom }
+export { createUser, login, createPatient, getPatients, getPatientsAlta, uptadeDataMed, archivePatient, updateStatus, uptadeRoom }

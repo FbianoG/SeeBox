@@ -8,6 +8,13 @@
     text-transform: capitalize;
 }
 
+.avisoTitle {
+    color: mediumslateblue;
+    margin: 150px 0 0;
+    text-transform: none;
+    text-align: center;
+}
+
 .recep .legends {
     padding: 20px 15px;
     margin: 0 0 10px 0;

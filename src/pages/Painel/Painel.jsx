@@ -26,9 +26,9 @@ export default function Painel() {
                         <p>Painel de gestão dos leitos liberados aos pacientes em emergência.</p>
                     </a>
                     <a href=''>
-                        <i className="fa-solid fa-gears"></i>
-                        <h3>Configurações</h3>
-                        <p></p>
+                        <i className="fa-solid fa-user-nurse"></i>
+                        <h3>Painel Enfermagem</h3>
+                        <p>Painel de gestão assistencial sobre os pacientes na emergência e seus processos.</p>
                     </a>
                 </div>
             </main>

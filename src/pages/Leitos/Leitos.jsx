@@ -48,9 +48,9 @@ export default function Leitos() {
                 <span>Status</span>
                 <span>Quarto</span>
             </div>
+            {patients && patients.length === 0 && <h3 className='avisoTitle'>Ainda não há pacientes cadastrados!</h3>}
+            {!patients && <Loader />}
             <ul className='list'>
-                {!patients && <Loader />}
-                {patients && patients.length === 0 && <h3>Ainda não há pacientes cadastrados!</h3>}
                 {patients && patients.map(element => (
                     <li key={element._id} className='item'>
                         <span className='item__box'>{element.box.slice(0, 1) == 'm' ? 'md' : element.box.slice(2)}</span>

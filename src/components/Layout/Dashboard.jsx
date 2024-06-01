@@ -7,17 +7,18 @@ export default function Dashboard({ data }) {
 
 
     function showDash() {
-        if (!dash) dashBoard.current.style.top = '0px',  dashBoard.current.style.margin = '0 0 0px', setDash(true)
-        else dashBoard.current.style.top = '',dashBoard.current.style.margin = '', setDash(false)
+        if (!dash) dashBoard.current.style.top = '0px', dashBoard.current.style.margin = '0 0 0px', setDash(true)
+        else dashBoard.current.style.top = '', dashBoard.current.style.margin = '', setDash(false)
     }
+
 
     function timeInt() {
         let count = 0
         let allTime = 0
         data.forEach(element => {
-            if (element.active && element.timeInt) {
-                const create = new Date(element.timeCreate)
-                const int = new Date(element.timeInt)
+            if (element.active && element.dataTime.timeInt) {
+                const create = new Date(element.dataTime.timeCreate)
+                const int = new Date(element.dataTime.timeInt)
                 count += 1
                 allTime += ((int - create) / 1000 / 60)
             }
@@ -27,24 +28,17 @@ export default function Dashboard({ data }) {
     }
 
     function timePerm() {
+        console.log(data)
         const date = new Date()
         let count = 0
         let allTime = 0
         data.forEach(element => {
-            const time = new Date(element.timeCreate)
+            const time = new Date(element.dataTime.timeCreate)
             if (element.active) {
                 count += 1
-                allTime += ((date - time) / 1000 / 60  )
+                allTime += ((date - time) / 1000 / 60)
             }
-            // if (!element.timeArchive) {
-            //     count += 1
-            //     allTime += ((date - time) / 1000 / 60)
-            // }
-            // else if (element.timeArchive) {
-            //     const archive = new Date(element.timeArchive)
-            //     count += 1
-            //     allTime += ((archive - time) / 1000 / 60)
-            // }
+            
         })
         if (allTime === 0) return 0
         return allTime / count
@@ -54,9 +48,9 @@ export default function Dashboard({ data }) {
         let count = 0
         let allTime = 0
         data.forEach(element => {
-            if (!element.active && element.timeInt && element.timeArchive) {
-                const int = new Date(element.timeInt)
-                const archive = new Date(element.timeArchive)
+            if (!element.active && element.dataTime.timeInt && element.dataTime.timeArchive) {
+                const int = new Date(element.dataTime.timeInt)
+                const archive = new Date(element.dataTime.timeArchive)
                 count += 1
                 allTime += ((archive - int) / 1000 / 60)
             }
