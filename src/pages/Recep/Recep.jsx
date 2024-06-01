@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Recep.css'
-import { getPatients, updateStatus } from '../../assets/ApiBack'
+import { getPatients, getPatientsAlta, updateStatus } from '../../assets/ApiBack'
 import ToastAlert from '../../components/Common/ToastAlert'
 import AltaList from '../../components/Layout/AltaList'
 import Loader from '../../components/Common/Loader'
@@ -9,6 +9,7 @@ import ItenPatient from '../../components/Layout/ItenPatient'
 export default function Recep() {
     // console.log(JSON.parse(localStorage.getItem('User')))
     const [patients, setPatients] = useState(null)
+    const [altaPatients, setAltaPatients] = useState(null)
     const [alert, setAlert] = useState(false)
     const timeoutId = useRef(null)
 
@@ -16,9 +17,14 @@ export default function Recep() {
 
     async function getData() {
         try {
-            const response = await getPatients()
+            const [response, resAltaPatients] = await Promise.all([getPatients(), getPatientsAlta()])
             const ordered = response.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
             setPatients(ordered)
+
+            const altaPatientss = resAltaPatients.altaPatients.filter(element => !element.active)
+            const altaPatientsOrdered = altaPatientss.sort((a, b) => new Date(b.timeArchive) - new Date(a.timeArchive))
+            setAltaPatients(altaPatientsOrdered)
+
         } catch (error) {
             console.error(error);
             setAlert({ type: 'error', title: 'Erro', text: error.message })
@@ -59,7 +65,7 @@ export default function Recep() {
                 {patients && patients.map(element => <ItenPatient key={element._id} data={element} func={{ changeStatus }} />)}
             </ul>
             {alert && <ToastAlert data={alert} />}
-            <AltaList />
+            <AltaList data={altaPatients} />
 
         </div>
     )
