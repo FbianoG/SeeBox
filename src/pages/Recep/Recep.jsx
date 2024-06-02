@@ -17,13 +17,17 @@ export default function Recep() {
 
     async function getData() {
         try {
-            const [response, resAltaPatients] = await Promise.all([getPatients(), getPatientsAlta()])
+            const [response, resAltaPatients] = await Promise.all([getPatients('Med'), getPatientsAlta()])
+            console.log(response)
+
+            // Paciente ativo Recepção
             const ordered = response.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
             setPatients(ordered)
 
-            const altaPatientss = resAltaPatients.altaPatients.filter(element => !element.active)
-            const altaPatientsOrdered = altaPatientss.sort((a, b) => new Date(b.timeArchive) - new Date(a.timeArchive))
-            setAltaPatients(altaPatientsOrdered)
+            // Tratamento para histórico de altas
+            const altaPatients = resAltaPatients.altaPatients.filter(element => !element.dataActive.activeMed)
+            const altaPatientsOrdered = altaPatients.sort((a, b) => new Date(b.dataTime.timeArchive) - new Date(a.dataTime.timeArchive))
+            setAltaPatients(altaPatientsOrdered) // paciente de alte alta para histórico de alta
 
         } catch (error) {
             console.error(error);
@@ -36,8 +40,7 @@ export default function Recep() {
     async function changeStatus(_id, stats) {
         if (timeoutId.current) clearTimeout(timeoutId.current)
         setAlert(null)
-        if (window.confirm('Você realmente alterar o status do paciente ?')) { }
-        else return
+        if (!window.confirm('Você realmente alterar o status do paciente ?')) return
         try {
             const response = await updateStatus(_id, stats)
             getData()

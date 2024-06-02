@@ -10,7 +10,7 @@ export default function Home({ setUser }) {
     const [alert, setAlert] = useState('')
     const [logon, setLogon] = useState(false)
     const [formNewUser, setFormNewUser] = useState(false)
-    useEffect(() => { localStorage.clear() }, [])
+    useEffect(() => { localStorage.clear(), reset() }, [])
 
     async function logar(data) {
         setLogon(true)
@@ -22,6 +22,7 @@ export default function Home({ setUser }) {
             else if (response.roles === 'med') location.href = '/emerg'
             else if (response.roles === 'rec') location.href = '/recep'
             else if (response.roles === 'ger') location.href = '/leitos'
+            else if (response.roles === 'enf') location.href = '/enf'
         } catch (error) {
             setAlert(error.message)
             setLogon(false)

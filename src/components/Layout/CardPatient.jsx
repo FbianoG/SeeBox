@@ -15,8 +15,9 @@ export default function CardPatient({ data, func }) {
         else return
         clearTimeout(timeoutId)
         func.setAlert(false)
+        const sendBy = 'Med'
         try {
-            const response = await archivePatient(data._id, alta)
+            const response = await archivePatient(data._id, alta, sendBy)
             func.getData()
             func.setAlert({ title: 'Sucesso!', type: 'success', text: response.message })
         } catch (error) {

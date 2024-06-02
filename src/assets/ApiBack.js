@@ -42,9 +42,13 @@ async function createPatient(data) {
     }
 }
 
-async function getPatients() {
+async function getPatients(sendBy) {
+    let route
+    if (sendBy === 'Med') route = '/getPatientsMed'
+    else if (sendBy === 'Rec') route = '/getPatientsRec'
+    console.log()
     try {
-        const response = await axios.get(`${UrlBack}/getPatients`,)
+        const response = await axios.get(`${UrlBack}${route}`)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -79,9 +83,9 @@ async function uptadeDataMed(_id, data) {
     }
 }
 
-async function archivePatient(_id, alta) {
+async function archivePatient(_id, alta, sendBy) {
     try {
-        const response = await axios.put(`${UrlBack}/archivePatient`, { _id, alta, })
+        const response = await axios.put(`${UrlBack}/archivePatient`, { _id, alta, sendBy })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)

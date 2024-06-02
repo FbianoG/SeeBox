@@ -16,7 +16,7 @@ export default function Dashboard({ data }) {
         let count = 0
         let allTime = 0
         data.forEach(element => {
-            if (element.active && element.dataTime.timeInt) {
+            if (element.dataActive.activeMed && element.dataTime.timeInt) {
                 const create = new Date(element.dataTime.timeCreate)
                 const int = new Date(element.dataTime.timeInt)
                 count += 1
@@ -28,13 +28,12 @@ export default function Dashboard({ data }) {
     }
 
     function timePerm() {
-        console.log(data)
         const date = new Date()
         let count = 0
         let allTime = 0
         data.forEach(element => {
             const time = new Date(element.dataTime.timeCreate)
-            if (element.active) {
+            if (element.dataActive.activeMed) {
                 count += 1
                 allTime += ((date - time) / 1000 / 60)
             }
@@ -48,7 +47,7 @@ export default function Dashboard({ data }) {
         let count = 0
         let allTime = 0
         data.forEach(element => {
-            if (!element.active && element.dataTime.timeInt && element.dataTime.timeArchive) {
+            if (!element.dataActive.activeMed && element.dataTime.timeInt && element.dataTime.timeArchive) {
                 const int = new Date(element.dataTime.timeInt)
                 const archive = new Date(element.dataTime.timeArchive)
                 count += 1
@@ -63,9 +62,10 @@ export default function Dashboard({ data }) {
     return (
         <div className='dash' ref={dashBoard}>
             <div className="dash__card">
-                <div className="dash__card-bar yellow"></div>
+                {/* <div className="dash__card-bar yellow"></div> */}
+                <div className="dash__card-bar "></div>
                 <div className="dash__card-data">
-                    <p className="dash__card-title yellow">Tempo Médio de Permanência</p>
+                    <p className="dash__card-title">Tempo Médio de Permanência</p>
                     <p className="dash__card-text">{timePerm().toFixed(0)} min</p>
                 </div>
             </div>
@@ -77,14 +77,13 @@ export default function Dashboard({ data }) {
                 </div>
             </div>
             <div className="dash__card">
-                <div className="dash__card-bar red"></div>
+                {/* <div className="dash__card-bar red"></div> */}
+                <div className="dash__card-bar"></div>
                 <div className="dash__card-data">
-                    <p className="dash__card-title red">Internação {'->'} Alta PS</p>
+                    <p className="dash__card-title">Internação {'->'} Alta PS</p>
                     <p className="dash__card-text">{timeAlt().toFixed(0)} min</p>
                 </div>
             </div>
-
-
             {
                 dash ? <button onClick={showDash}><i className="fa-solid fa-chevron-up"></i></button>
                     : <button onClick={showDash}><i className="fa-solid fa-chevron-down"></i></button>

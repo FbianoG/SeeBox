@@ -15,7 +15,7 @@ export default function Leitos() {
 
     async function getData() {
         try {
-            const response = await getPatients()
+            const response = await getPatients('Med')
             const ordered = response.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
             setPatients(ordered)
         } catch (error) {

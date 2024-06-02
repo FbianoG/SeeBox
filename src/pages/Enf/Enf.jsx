@@ -1,4 +1,4 @@
-import './Emerg.css'
+import './Enf.css'
 import { useEffect, useState } from 'react'
 import { getPatients, getPatientsAlta } from '../../assets/ApiBack'
 import CardPatient from '../../components/Layout/CardPatient'
@@ -14,7 +14,7 @@ export default function Emerg() {
     const [allActivePatients, setAllActivePatients] = useState()
     const [patients, setPatients] = useState(null)
     const [altaPatients, setAltaPatients] = useState(null)
-    const [todayPatients, setTodayPatients] = useState(null)
+
     const [alert, setAlert] = useState(false)
     const [edit, setEdit] = useState(false)
     const [patient, setPatient] = useState(null)
@@ -36,9 +36,6 @@ export default function Emerg() {
             const ordered = activePatients.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
             setAllActivePatients(ordered)
 
-            // Tratamento para DashBoard
-            const todayPatients = resAltaPatients.altaPatients.filter(element => new Date(element.dataTime.timeCreate).getDate() === new Date().getDate())
-            setTodayPatients(todayPatients)
 
             // Tratamento para histórico de altas
             const altaPatients = resAltaPatients.altaPatients.filter(element => !element.dataActive.activeMed)
@@ -51,6 +48,10 @@ export default function Emerg() {
         }
     }
 
+    const displayNone = {
+        display: "none"
+    }
+
     return (
         <div className='emerg'>
             <header className='emerg__header'>
@@ -60,9 +61,9 @@ export default function Emerg() {
                 <button id={active === 'análise' && 'active'} onClick={() => setActive('análise')}>Análise</button>
                 <button id={active === 'alta' && 'active'} onClick={() => setActive('alta')}>Aguard. Alta</button>
                 <button id={active === 'internado' && 'active'} onClick={() => setActive('internado')}>Internados</button>
-                <button onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i> Incluir Paciente</button>
+                <button style={displayNone} onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i> Incluir Paciente</button>
             </header>
-            {todayPatients && <Dashboard data={todayPatients} />}
+            {/* {todayPatients && <Dashboard data={todayPatients} />} */}
             {!patients && <Loader />}
             {patients && patients.length === 0 && <h3 className='avisoTitle'>Ainda não há pacientes cadastrados!</h3>}
             <ul className='list'>
@@ -73,7 +74,7 @@ export default function Emerg() {
             {model && <Model data={patient} edit={edit} func={{ getData, setAlert, setModel, setEdit }} />}
             {alert && <ToastAlert data={alert} />}
             {altaPatients && <AltaList data={altaPatients} />}
-            <button className='btn__include' onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i></button>
-        </div>
+            <button style={displayNone} className='btn__include' onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i></button>
+        </div >
     )
 }
