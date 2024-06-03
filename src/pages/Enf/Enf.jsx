@@ -1,7 +1,8 @@
 import './Enf.css'
 import { useEffect, useState } from 'react'
 import { getPatients, getPatientsAlta } from '../../assets/ApiBack'
-import CardPatient from '../../components/Layout/CardPatient'
+import CardPatientEnf from '../../components/Layout/CardPatientEnf'
+
 import ToastAlert from '../../components/Common/ToastAlert'
 import Model from '../../components/Common/Model'
 import AltaList from '../../components/Layout/AltaList'
@@ -10,15 +11,14 @@ import Dashboard from '../../components/Layout/Dashboard'
 
 export default function Emerg() {
 
-    const [model, setModel] = useState(false)
-    const [allActivePatients, setAllActivePatients] = useState()
-    const [patients, setPatients] = useState(null)
-    const [altaPatients, setAltaPatients] = useState(null)
-
-    const [alert, setAlert] = useState(false)
-    const [edit, setEdit] = useState(false)
-    const [patient, setPatient] = useState(null)
-    const [active, setActive] = useState('todos')
+    const [model, setModel] = useState(false) // Modal para editar paciente
+    const [edit, setEdit] = useState(false) // Diferenciar se Modal é de editar ou incluir paciente
+    const [patient, setPatient] = useState(null) // Paciente selecionado para editar
+    const [allActivePatients, setAllActivePatients] = useState() // Pacientes (DataBase) todos os ativos
+    const [altaPatients, setAltaPatients] = useState(null) // Pacientes (DataBase) com alta médica
+    const [patients, setPatients] = useState(null)  // Pacientes ativos de acordo com filtro do menu
+    const [alert, setAlert] = useState(false) // Toast alerta
+    const [active, setActive] = useState('todos') // Filtro selecionado no menu
 
     useEffect(() => { getData(), setInterval(() => { getData() }, [60000]) }, [])
 
@@ -32,15 +32,15 @@ export default function Emerg() {
     async function getData() {
         try {
             const [activePatients, resAltaPatients] = await Promise.all([getPatients('Med'), getPatientsAlta()])
+
             // Pacientes ativos médico
             const ordered = activePatients.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))
             setAllActivePatients(ordered)
 
-
             // Tratamento para histórico de altas
             const altaPatients = resAltaPatients.altaPatients.filter(element => !element.dataActive.activeMed)
             const altaPatientsOrdered = altaPatients.sort((a, b) => new Date(b.dataTime.timeArchive) - new Date(a.dataTime.timeArchive))
-            setAltaPatients(altaPatientsOrdered) // paciente de alte alta para histórico de alta
+            setAltaPatients(altaPatientsOrdered)
         } catch (error) {
             console.log(error)
             setAlert({ type: 'error', title: 'Erro', text: error.message })
@@ -55,8 +55,7 @@ export default function Emerg() {
     return (
         <div className='emerg'>
             <header className='emerg__header'>
-                {JSON.parse(localStorage.getItem('User')).roles === 'adm' ? <a href='/painel'>SeeBox</a> : <a>SeeBox</a>}
-
+                {JSON.parse(localStorage.getItem('User')).roles === 'adm' ? <a href='/painel'>SeeBox</a> : <a>SeeBox</a>} 
                 <button id={active === 'todos' && 'active'} onClick={() => setActive('todos')}>Todos</button>
                 <button id={active === 'análise' && 'active'} onClick={() => setActive('análise')}>Análise</button>
                 <button id={active === 'alta' && 'active'} onClick={() => setActive('alta')}>Aguard. Alta</button>
@@ -67,7 +66,7 @@ export default function Emerg() {
             {!patients && <Loader />}
             {patients && patients.length === 0 && <h3 className='avisoTitle'>Ainda não há pacientes cadastrados!</h3>}
             <ul className='list'>
-                {patients && patients.map(element => <CardPatient key={element._id} data={element} func={{ getData, setAlert, setEdit, setModel, setPatient }} />)}
+                {patients && patients.map(element => <CardPatientEnf key={element._id} data={element} func={{ getData, setAlert, setEdit, setModel, setPatient }} />)}
             </ul>
 
 
@@ -77,4 +76,8 @@ export default function Emerg() {
             <button style={displayNone} className='btn__include' onClick={() => setModel(true)}><i className="fa-solid fa-circle-plus"></i></button>
         </div >
     )
+
+
+
+
 }

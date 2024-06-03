@@ -1,9 +1,9 @@
-import './CardPatient.css'
-import { useState } from 'react';
-import { archivePatient } from '../../assets/ApiBack';
+import { useState } from 'react'
+import './CardPatientEnf'
+
+export default function CardPatientEnf({ data, func }) {
 
 
-export default function CardPatient({ data, func }) {
 
     const [alta, setAlta] = useState(null)
     const [options, setOptions] = useState()
@@ -32,7 +32,7 @@ export default function CardPatient({ data, func }) {
 
     return (
         <li className='card' >
-            <div className={`ticket ${data.dataMed?.spec}`}></div>
+            <div className={`ticket ${data.dataMed.spec}`}></div>
             <form onSubmit={archive}>
                 <div className="head">
                     <div className="head__data">
@@ -46,24 +46,23 @@ export default function CardPatient({ data, func }) {
                 <span className="divider"></span>
                 <div className="content">
                     <div className="content__check">
-                        <input type="checkbox" checked={data.dataMed?.nota} disabled />
-                        <label id={!data.dataMed?.nota && 'notChecked'}>Nota</label>
-                        <input type="checkbox" checked={data.dataMed?.conc} disabled />
-                        <label id={!data.dataMed?.conc && 'notChecked'}>Conciliação</label>
-                        <input type="checkbox" checked={data.dataMed?.pres} disabled />
-                        <label id={!data.dataMed?.pres && 'notChecked'}>Prescrição</label>
-                        <input type="checkbox" checked={data.dataMed?.exa} disabled />
-                        <label id={!data.dataMed?.exa && 'notChecked'}>Exames</label>
-                        <input type="checkbox" checked={data.dataMed?.tev} disabled />
-                        <label id={!data.dataMed?.tev && 'notChecked'}>TEV</label>
-                        <input type="checkbox" checked={data.dataMed?.int} disabled />
-                        <label id={!data.dataMed?.int && 'notChecked'}>Internação</label>
+                        <input type="checkbox" checked={data?.dataEnf?.test1} disabled />
+                        <label id={data?.dataEnf?.test1 && 'notChecked'}>Test1</label>
+                        <input type="checkbox" checked={data?.dataEnf?.test2} disabled />
+                        <label id={!data?.dataEnf?.test2 && 'notChecked'}>Test2</label>
+                        <input type="checkbox" checked={data?.dataEnf?.test3} disabled />
+                        <label id={!data?.dataEnf?.test3 && 'notChecked'}>Test3</label>
+                        <input type="checkbox" checked={data?.dataEnf?.test4} disabled />
+                        <label id={!data?.dataEnf?.test4 && 'notChecked'}>Test4</label>
+                        <input type="checkbox" checked={data?.dataEnf?.test5} disabled />
+                        <label id={!data?.dataEnf?.test5 && 'notChecked'}>Test5</label>
+
                     </div>
-                    <textarea spellCheck="false" value={data.dataMed?.obs} disabled></textarea>
+                    <textarea spellCheck="false" value={data?.dataEnf?.obs} disabled></textarea>
                 </div>
                 <div className="footer">
                     <button type='button' title='Editar Paciente' onClick={() => { func.setModel(true), func.setEdit(true), func.setPatient(data) }}><i className="fa-solid fa-user-pen"></i></button>
-                    <span className='footer__falseBtn' onClick={() => setOptions(true)} onMouseLeave={() => setOptions(false)} ><i className="fa-solid fa-cloud-arrow-up"></i>
+                    {/* <span className='footer__falseBtn' onClick={() => setOptions(true)} onMouseLeave={() => setOptions(false)} ><i className="fa-solid fa-cloud-arrow-up"></i>
                         {options && <div className="footer__options">
                             <button type='submit' onClick={() => setAlta('internado')}>Internado</button>
                             <button type='submit' onClick={() => setAlta('melhorado')}>Melhorado</button>
@@ -71,7 +70,7 @@ export default function CardPatient({ data, func }) {
                             <button type='submit' onClick={() => setAlta('transferência')}>Transferência</button>
                             <button type='submit' onClick={() => setAlta('outros')}>Outros</button>
                         </div>}
-                    </span>
+                    </span> */}
                     <span className={`footer__status ${data.stats}`}>
                         {data.stats === 'alta' ? 'Aguard. Alta' : data.stats}
                     </span>
@@ -80,4 +79,3 @@ export default function CardPatient({ data, func }) {
         </li >
     )
 }
-

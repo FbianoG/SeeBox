@@ -33,7 +33,7 @@ async function login(data) {
 
 async function createPatient(data) {
     try {
-        const response = await axios.post(`${UrlBack}/createPatient`, { name: data.name.toLowerCase(), age: data.age, plan: data.plan.toLowerCase(), box: data.box, spec: data.spec })
+        const response = await axios.post(`${UrlBack}/createPatient`, { data })
         return response.data
     } catch (error) {
         if (error.response) throw new Error(error.response.data.message)
