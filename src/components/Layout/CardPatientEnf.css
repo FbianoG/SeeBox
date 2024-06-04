@@ -1,0 +1,35 @@
+.content__check-enf {
+    min-width: 200px;
+    overflow: hidden;
+    display: grid;
+    gap: 3px;
+    font-size: 14px;
+}
+
+.content__check-enf .check__row {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    height: max-content;
+}
+
+.content__check-enf .check__row p {
+    color: #777;
+    width: 147px;
+    min-width: 100px;
+    border: none;
+    text-transform: capitalize;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: default;
+}
+
+.content__check-enf label {
+    color: mediumslateblue;
+    font-weight: 500;
+}
+
+.card__content-textareaEnf {
+    max-height: 75px !important;
+}

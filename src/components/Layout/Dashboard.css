@@ -108,3 +108,9 @@ f7f667
         font-size: 24px;
     }
 }
+
+@media print {
+    .dash {
+        display: none;
+    }
+}

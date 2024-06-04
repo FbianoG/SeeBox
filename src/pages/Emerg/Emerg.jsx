@@ -54,7 +54,7 @@ export default function Emerg() {
     return (
         <div className='emerg'>
             <header className='emerg__header'>
-                {JSON.parse(localStorage.getItem('User')).roles === 'adm' ? <a href='/painel'>SeeBox</a> : <a>SeeBox</a>}
+                {JSON.parse(localStorage.getItem('User'))?.roles === 'adm' ? <a href='/painel'>SeeBox</a> : <a>SeeBox</a>}
 
                 <button id={active === 'todos' && 'active'} onClick={() => setActive('todos')}>Todos</button>
                 <button id={active === 'análise' && 'active'} onClick={() => setActive('análise')}>Análise</button>

@@ -127,6 +127,8 @@
 }
 
 
+
+/* Checkbox Médico */
 .model__content-checkbox {
     display: grid;
     grid-template-columns: 15px 1fr 15px 1fr;
@@ -153,6 +155,36 @@
     cursor: pointer;
 }
 
+
+
+
+/* Checkbox Enfermágem */
+.model__content-checkbox-enf {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+    grid-template-columns: max-content 1fr;
+    margin: 0 0 20px;
+    align-items: center;
+}
+
+.model__content-checkbox-enf label {
+    font-size: 14px;
+    margin: 0;
+}
+
+.model__content-checkbox-enf input {
+    margin: 0;
+    padding: 3px 5px;
+}
+
+.model__textarea-enf {
+    height: 75px !important;
+
+}
+
+
+
 .model__content textarea {
     margin: 0 0 20px;
     border: 1px solid #0002;
@@ -162,8 +194,11 @@
     outline: none;
     padding: 3px 5px;
     color: #333;
-}
 
+    &:focus {
+        border-color: #7b57ff;
+    }
+}
 
 .model__time {
     font-size: 14px;
@@ -175,7 +210,6 @@
         color: mediumslateblue;
     }
 }
-
 
 .model__content-spec {
     display: flex;

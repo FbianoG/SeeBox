@@ -83,6 +83,17 @@ async function uptadeDataMed(_id, data) {
     }
 }
 
+async function uptadeDataEnf(_id, data) {
+    try {
+        const response = await axios.put(`${UrlBack}/uptadeDataEnf`, { _id, box: data.box, dataEnf: data, })
+        return response.data
+    } catch (error) {
+        if (error.response) throw new Error(error.response.data.message)
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
 async function archivePatient(_id, alta, sendBy) {
     try {
         const response = await axios.put(`${UrlBack}/archivePatient`, { _id, alta, sendBy })
@@ -124,4 +135,4 @@ async function uptadeRoom(_id, room) {
 }
 
 
-export { createUser, login, createPatient, getPatients, getPatientsAlta, uptadeDataMed, archivePatient, updateStatus, uptadeRoom }
+export { createUser, login, createPatient, getPatients, getPatientsAlta, uptadeDataMed, uptadeDataEnf, archivePatient, updateStatus, uptadeRoom }

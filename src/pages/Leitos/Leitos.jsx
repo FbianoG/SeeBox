@@ -11,9 +11,11 @@ export default function Leitos() {
     const [alert, setAlert] = useState(false)
     const [room, setRoom] = useState(null)
 
-    useEffect(() => { getData() }, [])
+    useEffect(() => { getData(), setInterval(() => { getData() }, 60000) }, [])
+        ;
 
     async function getData() {
+        console.log('att')
         try {
             const response = await getPatients('Med')
             const ordered = response.patients.sort((a, b) => a.box.slice(2) - b.box.slice(2))

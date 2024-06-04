@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './CardPatientEnf'
+import './CardPatientEnf.css'
 
 export default function CardPatientEnf({ data, func }) {
 
@@ -45,18 +45,31 @@ export default function CardPatientEnf({ data, func }) {
                 </div>
                 <span className="divider"></span>
                 <div className="content">
-                    <div className="content__check">
-                        <input type="checkbox" checked={data?.dataEnf?.test1} disabled />
-                        <label id={data?.dataEnf?.test1 && 'notChecked'}>Test1</label>
-                        <input type="checkbox" checked={data?.dataEnf?.test2} disabled />
-                        <label id={!data?.dataEnf?.test2 && 'notChecked'}>Test2</label>
-                        <input type="checkbox" checked={data?.dataEnf?.test3} disabled />
-                        <label id={!data?.dataEnf?.test3 && 'notChecked'}>Test3</label>
-                        <input type="checkbox" checked={data?.dataEnf?.test4} disabled />
-                        <label id={!data?.dataEnf?.test4 && 'notChecked'}>Test4</label>
-                        <input type="checkbox" checked={data?.dataEnf?.test5} disabled />
-                        <label id={!data?.dataEnf?.test5 && 'notChecked'}>Test5</label>
-
+                    <div className="content__check-enf">
+                        <div className="check__row">
+                            <label>Diag:</label>
+                            <p title={data?.dataEnf?.diag}>{data?.dataEnf?.diag}</p>
+                        </div>
+                        <div className="check__row">
+                            <label>AVP:</label>
+                            <p title={data?.dataEnf?.avp}>{data?.dataEnf?.avp}</p>
+                        </div>
+                        <div className="check__row">
+                            <label>Alergia:</label>
+                            <p title={data?.dataEnf?.alerg}>{data?.dataEnf?.alerg}</p>
+                        </div>
+                        <div className="check__row">
+                            <label>HPP:</label>
+                            <p title={data?.dataEnf?.hpp}>{data?.dataEnf?.hpp}</p>
+                        </div>
+                        <div className="check__row">
+                            <label>Rastreio:</label>
+                            <p title={data?.dataEnf?.rast}>{data?.dataEnf?.rast}</p>
+                        </div>
+                        <div className="check__row">
+                            <label>Protocolo:</label>
+                            <p title={data?.dataEnf?.prot}>{data?.dataEnf?.prot}</p>
+                        </div>
                     </div>
                     <textarea spellCheck="false" value={data?.dataEnf?.obs} disabled></textarea>
                 </div>

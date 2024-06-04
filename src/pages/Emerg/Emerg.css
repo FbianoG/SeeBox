@@ -146,5 +146,9 @@
         margin: 0.5cm;
     }
 
+    .emerg__header {
+        display: none;
+    }
+
 
 }

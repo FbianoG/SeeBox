@@ -162,6 +162,7 @@
 
 .card .content textarea {
     width: 100%;
+    min-height: 117px;
     padding: 3px 5px;
     resize: none;
     border-radius: 5px;
@@ -330,11 +331,35 @@
 
 
 
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .card .head {
+        gap: 5px;
+    }
+
+    .card .head__data {
+        grid-template-columns: 100px 1fr 60px;
+    }
+
+    .card .head__data-info {
+        &:nth-child(3) {
+            text-align: center;
+        }
+    }
+}
+
+
+
 @media print {
 
     .emerg {
         padding: 0;
     }
+
+    .ticket {
+        display: none;
+    }
+
 
     .emerg .list {
         padding: 0;
